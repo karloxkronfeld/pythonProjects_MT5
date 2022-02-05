@@ -1,5 +1,7 @@
-from datetime import datetime
 import MetaTrader5 as mt5
+
+from datetime import datetime
+
 import pandas as pd
 # import matplotlib.pyplot as plt
 pd.set_option('display.max_columns', 500)  # cuántas columnas mostramos
@@ -7,6 +9,7 @@ pd.set_option('display.width', 1500)  # máx. anchura del recuadro para la muest
 
 mt5.initialize()
 mt5.login(61046869, password="lcyVgq5a")
+
 
 
 # # MIS DATOS #####################################

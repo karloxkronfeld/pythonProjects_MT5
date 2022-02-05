@@ -29,6 +29,7 @@ for simbolos in ACTIVOS:
     ticks_frame=ticks_frame[["time","precio"]].set_index("time")
     # ticks_frame.to_csv(simbolos+".csv")
     ticks_frame.to_csv(simbolos+"Enero.csv")
+    print('\r', simbolos, end='')
     print("el Excel de ",simbolos, "esta listo")
 
 

@@ -5,10 +5,10 @@ from pylab import *
 
 def leer_datos(temporalidad="10min"):
 
-    lista_archivos = ["GER40Enero.csv"]
+    lista_archivos = ["EURUSDEnero.csv"]
     for equis in lista_archivos:
-        datos = pd.read_csv(r"C:\Users\Personal\Downloads\PRojectosPython\BasesDeDatos(conScript)\\" + equis).set_index("time")
-        datos.index = pd.DatetimeIndex(datos.index).strftime("%Y-%m-%d")
+        datos = pd.read_csv(r"C:\Users\Personal\Downloads\pythonProjects_MT5\LeerDatosFromMT5\\" + equis)
+        datos.index = pd.DatetimeIndex(datos.time).strftime("%Y-%m-%d")
         # datos=datos.groupby(pd.Grouper(freq=str(temporalidad))).mean().dropna()
     return datos
 
@@ -18,23 +18,19 @@ moda=statistics.mode(data.precio)
 media=statistics.mean(data.precio)
 lista_dias=data.index.unique()
 
+
 dia=[] #Son todos los dias del mes separados cada uno en dataframes
 for x in range(len(lista_dias)):
     dia.append(data.loc[lista_dias[x],["precio"]])
-# print(dia)
 
-print(len(dia))
+
+# print(len(dia))
 
 mensual=figure(figsize=(30,30)) #mensual es la figura que voy a llenar de graficas
 
-# for i in range(0,22):
-#     subplot(4,6,i+1,frameon=True,xticks=[],yticks=[])
-#     plot(dia[i].values)
-#     title(pd.to_datetime(lista_dias[i]).strftime("%d-%a"))
-
 
 lista_maximos, lista_minimos, lista_promedios = [], [], []
-for i in range(0, 21):
+for i in range(0, len(dia)):
     maximo = max(dia[i].precio)
     minimo = min(dia[i].precio)
     promedio = dia[i].values.mean()

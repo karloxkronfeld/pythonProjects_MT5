@@ -13,7 +13,8 @@ mt5.initialize()
 mt5.login(61046869, password="lcyVgq5a")
 
 # ACTIVOS=["EURUSD","XAUUSD","USDX","USDJPY","USDCHF","GBPJPY","GER40","NAS100","US500","UK100","BTCUSD"]
-ACTIVOS=["XAUUSD","USDX"]
+ACTIVOS=["GER40","USDX"]
+
 
 los_precios=[]
 for simbolos in ACTIVOS:

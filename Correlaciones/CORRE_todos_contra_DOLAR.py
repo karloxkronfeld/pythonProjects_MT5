@@ -3,14 +3,19 @@ from datetime import datetime
 import pandas as pd
 from statsmodels.tsa.stattools import coint
 import numpy as np
-import seaborn
 import matplotlib.pyplot as plt
-# import matplotlib.pyplot as plt
+
 pd.set_option('display.max_columns', 500)  # cuántas columnas mostramos
 pd.set_option('display.width', 1500)  # máx. anchura del recuadro para la muestra
 
+
+
+
+
 mt5.initialize()
 # mt5.login(61046869, password="lcyVgq5a")
+
+
 
 LOS_ACT=["EURUSD","XAUUSD","USDJPY","USDCHF","GBPJPY","GER40","NAS100","US500","UK100","BTCUSD"]
 # LOS_ACT=["EURUSD"]

@@ -2,7 +2,6 @@ import MetaTrader5 as mt5
 import pandas as pd
 from tkinter import *
 from tkinter import ttk, messagebox
-from PIL import Image, ImageTk
 
 pd.set_option('display.max_columns', 500) # cuántas columnas mostramos
 pd.set_option('display.width', 1500)      # máx. anchura del recuadro para la muestra

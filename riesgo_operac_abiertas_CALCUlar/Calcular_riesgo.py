@@ -26,10 +26,13 @@ nuevo_df["riesgo_pips"]= nuevo_df.diferencia/nuevo_df.trade_tick_size  # diferen
 nuevo_df["multiplicador"]= nuevo_df.volume*nuevo_df.tick_values  # vol*tick_values
 nuevo_df["riesgo"] = nuevo_df.riesgo_pips * nuevo_df.multiplicador
 
+k_inicial= 977.49
 suma_riesgo= sum(nuevo_df.riesgo)
-print(nuevo_df.sort_values("riesgo"))
+suma_ganancias= sum(dataframe.profit)
+# print(nuevo_df.sort_values("riesgo"))
 
-print("El riesgo total es: {}".format(suma_riesgo))
-print("Esta arriesgando un 	{:.2f}%".format(100*suma_riesgo/mt5.account_info().balance))
+print("El riesgo total es: {:.2F}$ USD".format(suma_riesgo))
+print("Esta arriesgando un {:.2f}% del capital total({})".format(100*suma_riesgo/mt5.account_info().balance,mt5.account_info().balance))
 
-
+print("Esta ganando un {:.2f}% del capital total({})".format(100*suma_ganancias/mt5.account_info().balance,mt5.account_info().balance))
+print("Hoy la ganancia/perdida ={:.2f}%".format(100*(((mt5.account_info().balance+suma_ganancias)/k_inicial)-1)))

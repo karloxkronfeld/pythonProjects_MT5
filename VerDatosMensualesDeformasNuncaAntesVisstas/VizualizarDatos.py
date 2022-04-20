@@ -30,7 +30,7 @@ def hacer_grafico_OpenSea(data):
         else:
             color_fondo = "lightcoral"
 
-        subplot(6, 5, i + 1, frameon=True, xticks=[], yticks=[], facecolor=color_fondo)
+        subplot(5, 5, i + 1, frameon=True, xticks=[], yticks=[], facecolor=color_fondo)
         mensual.tight_layout(pad=10.0)
         title(pd.to_datetime(lista_dias[i]).strftime("%d-%a"),size=10)
 
@@ -53,8 +53,8 @@ def hacer_grafico_OpenSea(data):
     show()
 
 
-# lista_archivos = ["EURUSDFebrero.csv", "XAUUSDFebrero.csv", "USDXFebrero.csv", "USDJPYFebrero.csv", "USDCHFFebrero.csv", "GBPJPYFebrero.csv", "GER40Febrero.csv", "NAS100Febrero.csv", "US500Febrero.csv", "BTCUSDFebrero.csv", "ETHUSDFebrero.csv"]
-lista_archivos = ["ETHUSDFebrero.csv"]
+lista_archivos = ["EURUSDMarzo.csv", "XAUUSDMarzo.csv", "USDXMarzo.csv", "USDJPYMarzo.csv", "EURCHFMarzo.csv", "USDCHFMarzo.csv", "GBPJPYMarzo.csv", "GER40Marzo.csv", "NAS100Marzo.csv", "US500Marzo.csv", "BTCUSDMarzo.csv", "ETHUSDMarzo.csv"]
+# lista_archivos = ["ETHUSDMarzo.csv"]
 
 for equis in lista_archivos:
     datos = pd.read_csv(r"C:\Users\Personal\Downloads\pythonProjects_MT5\LeerDatosFromMT5\\" + equis)
@@ -90,12 +90,3 @@ for equis in lista_archivos:
 
 
 
-#
-#
-#
-# # data=data[~data.index.duplicated()]  ## quitar indices duplicados
-#
-# data[data.index.dayofweek < 5].plot()
-# # data.plot()
-# # data.plot()
-# show()

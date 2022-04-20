@@ -11,7 +11,7 @@ pd.set_option('display.width', 1500)      # máx. anchura del recuadro para la m
 def cerrar_posiciones():
     mt5.initialize()
     df = pd.DataFrame(list(mt5.positions_get()), columns=mt5.positions_get()[0]._asdict().keys()).set_index("symbol",drop=False)
-    messagebox.showinfo(message="El resultado final es \n{:.2}".format(sum(df.profit)), title="RESULTADO")
+    # messagebox.showinfo(message="El resultado final es \n{:.2}".format(sum(df.profit)), title="RESULTADO")
 
 
 
@@ -66,11 +66,11 @@ def cerrar_posiciones():
 
 
 
-root=Tk()
-root.title("Botón de panico, CERRAR TODO")
-photo = PhotoImage(file=r"C:\Users\Personal\OneDrive\Pictures\panicbuton.png")
-photo_image=photo.subsample(1,1)
-Button(root,image=photo_image,command=cerrar_posiciones).pack(side=BOTTOM,pady=0,)
-mainloop()
+# root=Tk()
+# root.title("Botón de panico, CERRAR TODO")
+# photo = PhotoImage(file=r"C:\Users\Personal\OneDrive\Pictures\panicbuton.png")
+# photo_image=photo.subsample(1,1)
+# Button(root,image=photo_image,command=cerrar_posiciones).pack(side=BOTTOM,pady=0,)
+# mainloop()
 
 

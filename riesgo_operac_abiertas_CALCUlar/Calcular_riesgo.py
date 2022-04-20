@@ -1,5 +1,6 @@
 import MetaTrader5 as mt5
 import pandas as pd
+# import time
 
 pd.set_option('display.max_columns', 500) # cuántas columnas mostramos
 pd.set_option('display.width', 1500)      # máx. anchura del recuadro para la muestra
@@ -28,25 +29,41 @@ def Calculadora_Riesgo():
     nuevo_df["multiplicador"]= nuevo_df.volume*nuevo_df.tick_values  # vol*tick_values
     nuevo_df["riesgo"] = nuevo_df.riesgo_pips * nuevo_df.multiplicador
 
-    k_inicial= 1023.31
+
+
+    k_inicial= 1783.0#mt5.account_info().balance
     suma_riesgo= sum(nuevo_df.riesgo)
     suma_ganancias= sum(dataframe.profit)
     nuevo_nuevo_df=nuevo_df[["volume", "symbol", "riesgo_pips", "riesgo"]]
     nuevo_nuevo_df["profit"]=dataframe.profit.values
-    porcentaje_ganancia = 100*suma_ganancias/mt5.account_info().balance
+    nuevo_df["profit"]=nuevo_nuevo_df.profit
+    nuevo_df["riesgo %"]=100*nuevo_df.riesgo/k_inicial
+    nuevo_df["riesgo %"]= nuevo_df['riesgo %'].map(lambda x : ('%.2f')%x+" %")
+    nuevo_df["riesgo"] = nuevo_df['riesgo'].map(lambda x: ('%.2f') % x + " $")
+    nuevo_df["profit"] = nuevo_df['profit'].map(lambda x: ('%.2f') % x + " $")
 
-    # print(nuevo_nuevo_df)
+
+
 
     # print("El riesgo total es: {:.2F}$ USD".format(suma_riesgo))
     # print("Esta arriesgando un {:.2f}% del capital total({})".format(100*suma_riesgo/mt5.account_info().balance,mt5.account_info().balance))
     # print("Esta ganando un {:.2f}% del capital total({})".format(100*suma_ganancias/mt5.account_info().balance,mt5.account_info().balance))
     # print("Hoy la ganancia/perdida ={:.2f}%".format(100*(((mt5.account_info().balance+suma_ganancias)/k_inicial)-1)))
 
-    return "El riesgo total es: {:.2f}$ USD".format(suma_riesgo)+\
-           "\nEstoy ganando/perdiendo :{:.2f}$ USD".format(sum(nuevo_nuevo_df.profit))+\
-           "\nEsta arriesgando un {:.2f}% del capital total({})".format(100*suma_riesgo/mt5.account_info().balance,mt5.account_info().balance)+\
-           "\nEsta ganando un {:.2f}% del capital total({})".format(100*suma_ganancias/mt5.account_info().balance,mt5.account_info().balance)+ \
-           "\nHoy la ganancia/perdida ={:.2f}%".format(100 * (((mt5.account_info().balance + suma_ganancias) / k_inicial) - 1)) +"\n"+ \
-           str(nuevo_df[["symbol","riesgo"]].values)
+    return "Capital={:>10}".format(mt5.account_info().balance)+\
+           "\nEl riesgo total es: {:>10.2f}$ USD  ({:.2f}%)".format(suma_riesgo,100 * suma_riesgo / mt5.account_info().balance)+ \
+           "\n\nEstoy ganando/perdiendo:{:>7.2f}$ USD ({:.2f}%)".format(sum(nuevo_nuevo_df.profit),100 * suma_ganancias / mt5.account_info().balance)+ \
+           "\n\nHoy la ganancia/perdida {:>7.2f}$ USD ({:.2f}%)".format(mt5.account_info().balance - k_inicial, 100 * (((mt5.account_info().balance) / k_inicial) - 1)) + \
+           "\n\nTOTAL {:>25.2f}$ USD ({:.2f}%)".format(mt5.account_info().balance +suma_ganancias - k_inicial, 100 * (((mt5.account_info().balance+suma_ganancias) / k_inicial) - 1)) + "\n\n" + \
+           "\n {:}".format(nuevo_df[["symbol", "riesgo","riesgo %","profit","volume"]].sort_values("symbol").set_index("symbol")),nuevo_df.profit
 
+
+
+
+
+# while True:
+#
+#     print("\r",Calculadora_Riesgo(),end=" ")
+#     time.sleep(4)
+#
 

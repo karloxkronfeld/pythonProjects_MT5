@@ -1,6 +1,7 @@
+import tkinter as tk
 import MetaTrader5 as mt5
 import pandas as pd
-# import time
+
 
 pd.set_option('display.max_columns', 500) # cuántas columnas mostramos
 pd.set_option('display.width', 1500)      # máx. anchura del recuadro para la muestra
@@ -57,13 +58,23 @@ def Calculadora_Riesgo():
            "\n\nTOTAL {:>25.2f}$ USD ({:.2f}%)".format(mt5.account_info().balance +suma_ganancias - k_inicial, 100 * (((mt5.account_info().balance+suma_ganancias) / k_inicial) - 1)) + "\n\n" + \
            "\n {:}".format(nuevo_df[["symbol", "riesgo","riesgo %","profit","volume"]].sort_values("symbol").set_index("symbol")),nuevo_df[["symbol","profit"]]
 
+guardar_profits=[]
+def actualizar_etiqueta():
 
+    Texto_riesgo.delete("1.0", tk.END)
+    Texto_riesgo.insert("end", Calculadora_Riesgo()[0])
 
+    root.after(2000, actualizar_etiqueta)
 
+root = tk.Tk()
+root.config(width=600, height=500)
+root.title("Consola de Trading")
 
-# while True:
-#
-#     print("\r",Calculadora_Riesgo(),end=" ")
-#     time.sleep(4)
-#
+Texto_riesgo= tk.Text(root,)
+Texto_riesgo.config(font=("Courier", 14),)
+Texto_riesgo.insert("end", Calculadora_Riesgo()[0])
+Texto_riesgo.place(x=10,y=50)
+
+root.after(2000, actualizar_etiqueta)
+root.mainloop()
 

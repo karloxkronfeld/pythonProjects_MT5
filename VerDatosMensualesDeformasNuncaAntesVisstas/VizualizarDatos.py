@@ -53,8 +53,8 @@ def hacer_grafico_OpenSea(data):
     show()
 
 
-lista_archivos = ["EURUSDMarzo.csv", "XAUUSDMarzo.csv", "USDXMarzo.csv", "USDJPYMarzo.csv", "EURCHFMarzo.csv", "USDCHFMarzo.csv", "GBPJPYMarzo.csv", "GER40Marzo.csv", "NAS100Marzo.csv", "US500Marzo.csv", "BTCUSDMarzo.csv", "ETHUSDMarzo.csv"]
-# lista_archivos = ["ETHUSDMarzo.csv"]
+lista_archivos = ["EURUSDAbril.csv", "XAUUSDAbril.csv", "USDXAbril.csv", "USDJPYAbril.csv", "EURCHFAbril.csv", "USDCHFAbril.csv", "GBPJPYAbril.csv", "GER40Abril.csv", "NAS100Abril.csv", "US500Abril.csv", "BTCUSDAbril.csv", "ETHUSDAbril.csv"]
+# lista_archivos = ["ETHUSDAbril.csv"]
 
 for equis in lista_archivos:
     datos = pd.read_csv(r"C:\Users\Personal\Downloads\pythonProjects_MT5\LeerDatosFromMT5\\" + equis)

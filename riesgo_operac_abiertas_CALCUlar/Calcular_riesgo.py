@@ -7,6 +7,7 @@ pd.set_option('display.width', 1500)      # máx. anchura del recuadro para la m
 pd.options.mode.chained_assignment = None  # default='warn'
 
 mt5.initialize()
+
 def Calculadora_Riesgo():
     dataframe=pd.DataFrame(data=list(mt5.positions_get()),
                            columns=mt5.positions_get()[0]._asdict().keys()).set_index("symbol",drop=False)
@@ -15,7 +16,10 @@ def Calculadora_Riesgo():
     tick_Values=[]
     trade_tick=[]
     for x in ACTIVOS:
-        tick_Values.append(mt5.symbol_info(x).trade_tick_value)
+        print(mt5.symbol_info(x).trade_tick_value)
+
+        tick_Values.append([mt5.symbol_info(x).trade_tick_value])
+
         trade_tick.append(mt5.symbol_info(x).trade_tick_size)
 
     dataframe["tick_values"]=tick_Values
